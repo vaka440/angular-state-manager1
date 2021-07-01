@@ -16,6 +16,7 @@ export class StoreCountService extends BaseStoreService<ICount> {   // add here 
     // or use an api to initialize with the received data 
     //
     return [{ value: 0 } as ICount];    // value will contain the current counter value
+                                        //  this must always return an array
   }
 
   // incrementing a value
