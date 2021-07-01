@@ -5,25 +5,30 @@ import { BaseStoreService } from '../../core/store/base-store.service';
 @Injectable({
   providedIn: 'root',
 })
-export class StoreTodoService extends BaseStoreService<ITodo> {
-  // ne pas oublier de nommer le type, cela va servir pour le mode DEV
+export class StoreTodoService extends BaseStoreService<ITodo> {   // add here the model
   getTypeName(): string {
-    return 'ITodo';
+    return 'ITodo';                                               // for DEV mode, add here the name of the model
   }
 
   getInitial(): Array<ITodo> {
-    // pour l'initialisation d'une liste, toujours retourner un tableau vide
-    return [];
+    //   
+    // initialize here something empty (an array, an object...)
+    // or use an api to initialize with the received data 
+    //
+    return [];    // initialized with an empty array
+                  // this must always return an array
   }
 
-  // si on a une action particulière à faire (qui ne fait pas partie des actions de base comme : ADD, REMOVE...)
-  // elle est spécifique à Todo, on est dans le service todo
-  // donc on l'a met ici
+  // modify a property of the model
+  // as it is a particular action which is not part of the basic actions like (ADD, REMOVE, UPDATE...)
+  //
+  // it is to update the property : isCompleted
   setCompleted(id: string, isCompleted: boolean) {
     let todo: ITodo | undefined = this.values.find((v: ITodo) => v.id === id);
     if (todo) {
       todo.isCompleted = isCompleted;
-      this.update(todo, 'COMPLETED');
+      this.update(todo, 'COMPLETED');   // we call update, a function of the abstract class
+                                        // a particular action therefore a particular name : 'COMPLETED'
     }
   }
 }
