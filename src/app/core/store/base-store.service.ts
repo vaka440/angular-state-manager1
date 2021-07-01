@@ -62,7 +62,7 @@ export abstract class BaseStoreService<T extends Base> {
     this.devMode('REMOVE', value);
   }
 
-  update(value: T, devName = 'UPDATE') {
+  update(value: T, devName = '') {
     const index = this.values.indexOf(value);
 
     this.values[index] = {
@@ -71,7 +71,7 @@ export abstract class BaseStoreService<T extends Base> {
 
     this.values = [...this.values];
 
-    this.devMode(devName, value);
+    this.devMode('UPDATE ' + devName, value);
   }
 
   findById(id: string): T | undefined {
@@ -89,7 +89,7 @@ export abstract class BaseStoreService<T extends Base> {
       this.addNotif(notif);
       console.log();
       console.log(
-        'DEV MODE - notifications : ' + this.getTypeName(),
+        'DEV MODE : ' + this.getTypeName(),
         this.notifs
       );
     }
