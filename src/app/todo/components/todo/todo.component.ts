@@ -43,14 +43,4 @@ export class TodoComponent implements OnInit {
     console.log('affichage', this.storeTodoService.values);
   }
 
-  onAction(id: string) {
-    console.log();
-    console.log('update todo1 --------------------------');
-    let ftodo1: ITodo | undefined = this.storeTodoService.findById(id);
-    if (ftodo1) {
-      ftodo1.title = 'update todo1';
-      this.storeTodoService.update(ftodo1);
-    }
-    this.displayConsole();
-  }
 }
